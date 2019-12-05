@@ -8,7 +8,7 @@ namespace Application.Validators
         {
             var options = ruleBuilder
                 .NotEmpty()
-                .MaximumLength(6).WithMessage("Password must have a minimum of 6 characters")
+                .MinimumLength(6).WithMessage("Password must have a minimum of 6 characters")
                 .Matches("[A-Z]")
                 .WithMessage("Password must contain one uppercase letter")
                 .Matches("[a-z]")
