@@ -1,14 +1,6 @@
-using System;
-using System.Linq;
-using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Activities;
-using Application.Errors;
-using AutoMapper;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
-using Persistence;
 
 namespace Application.Profiles
 {
@@ -21,25 +13,16 @@ namespace Application.Profiles
         
         public class Handler: IRequestHandler<Query, Profile>
         {
-            private readonly DataContext _context;
+            private readonly IProfileReader _profileReader;
 
-            public Handler(DataContext context)
+            public Handler(IProfileReader profileReader)
             {
-                _context = context;
+                _profileReader = profileReader;
             }
             
             public async Task<Profile> Handle(Query request, CancellationToken cancellationToken)
             {
-                var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == request.Username);
-
-                return new Profile
-                {
-                    Username = user.UserName,
-                    DisplayName = user.DisplayName,
-                    Image = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
-                    Photos = user.Photos,
-                    Bio = user.Bio
-                };
+                return await _profileReader.ReadProfile(request.Username);
             }
         }
     }

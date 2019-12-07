@@ -40,6 +40,7 @@ export interface IAttenddee {
     displayName: string;
     image: string;
     isHost: boolean;
+    following?: boolean;
 }
 
 export interface IComment {
