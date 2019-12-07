@@ -109,4 +109,23 @@ export default class ProfileStore {
             })
         }
     }
+
+    @action updateProfile = async (profile: Partial<IProfile>) => {
+
+        try {
+
+            await agent.Profiles.updateProfile(profile);
+            runInAction(() => {
+               if(this.profile!.displayName !== this.rootStore.userStore.user!.displayName){
+                   this.rootStore.userStore.user!.displayName = profile.displayName!;
+               }
+               this.profile = {...this.profile!, ...profile};
+            });
+
+        } catch (e) {
+            console.log(e);
+            toast.error('Problem setting main photo');
+        }
+
+    }
 }
