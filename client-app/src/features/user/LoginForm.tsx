@@ -34,7 +34,7 @@ const LoginForm = () => {
                     <Field name='password'  component={TextInput} placeholder ='Password' type='password' />
                     {submitError && !dirtyFieldsSinceLastSubmit && <ErrorMessage  error={submitError} text='Invalid email or password'/>}
                     <br/>
-                    <Button fluid loading={submitting} color='teal' content='Login' disabled={invalid && !dirtyFieldsSinceLastSubmit || pristine} />
+                    <Button fluid loading={submitting} color='teal' content='Login' disabled={invalid && (!dirtyFieldsSinceLastSubmit || pristine)} />
                 </Form>
             )}
         />

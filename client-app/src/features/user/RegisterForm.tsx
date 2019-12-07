@@ -40,7 +40,7 @@ const RegisterForm = () => {
                     <ErrorMessage error={submitError} text=''/>}
                     <br/>
                     <Button fluid loading={submitting} color='teal' content='Login'
-                            disabled={invalid && !dirtyFieldsSinceLastSubmit || pristine}/>
+                            disabled={invalid && (!dirtyFieldsSinceLastSubmit || pristine)}/>
                 </Form>
             )}
         />
