@@ -7,6 +7,7 @@ export interface IActivity {
     city: string;
     venue: string;
     attendees: IAttenddee[];
+    comments: IComment[];
     isGoing: boolean;
     isHost: boolean;
 }
@@ -39,4 +40,14 @@ export interface IAttenddee {
     displayName: string;
     image: string;
     isHost: boolean;
+}
+
+export interface IComment {
+    id: string;
+    createdAt: Date;
+    body: string;
+    username: string;
+    displayName: string;
+    image: string;
+
 }
