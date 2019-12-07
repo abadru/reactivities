@@ -25,7 +25,7 @@ const ActivityDetailedHeader: React.FC<{ activity: IActivity }> = ({activity}) =
     const rootStore = useContext(RootStoreContext);
 
     const {attendActivity, cancelAttendance, loading} = rootStore.activityStore;
-    const host = activity.userActivities.filter( x => x.isHost)[0];
+    const host = activity.attendees.filter( x => x.isHost)[0];
 
     return (
         <Segment.Group>

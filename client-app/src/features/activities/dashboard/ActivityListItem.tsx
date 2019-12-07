@@ -8,7 +8,7 @@ import ActivityListItemAttendees from "./ActivityListItemAttendees";
 
 const ActivityListItem: React.FC<{ activity: IActivity }> = ({activity}) => {
 
-    const host = activity.userActivities.filter( x => x.isHost)[0];
+    const host = activity.attendees.filter( x => x.isHost)[0];
 
     return (
 
@@ -43,7 +43,7 @@ const ActivityListItem: React.FC<{ activity: IActivity }> = ({activity}) => {
             </Segment>
 
             <Segment secondary>
-                <ActivityListItemAttendees attendees={activity.userActivities} />
+                <ActivityListItemAttendees attendees={activity.attendees} />
             </Segment>
 
             <Segment clearing>

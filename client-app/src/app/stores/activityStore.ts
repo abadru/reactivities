@@ -108,7 +108,7 @@ export default class ActivityStore {
             let attendees = [];
             attendees.push(attendee);
             activity.isHost = true;
-            activity.userActivities = attendees;
+            activity.attendees = attendees;
             runInAction('Creating activity', () => {
                 this.activityRegistry.set(activity.id, activity);
                 this.submitting = false;
@@ -171,7 +171,7 @@ export default class ActivityStore {
             await agent.Activities.attend(this.activity!.id);
             runInAction(() => {
                 if (this.activity) {
-                    this.activity.userActivities.push(attendee);
+                    this.activity.attendees.push(attendee);
                     this.activity.isGoing = true;
                     this.activityRegistry.set(this.activity.id, this.activity);
                     this.loading = false;
@@ -195,8 +195,8 @@ export default class ActivityStore {
             await agent.Activities.unattend(this.activity!.id);
             runInAction(() => {
                 if (this.activity) {
-                    this.activity.userActivities = this.activity
-                        .userActivities.filter(x => x.username !== this.rootStore.userStore.user!.username);
+                    this.activity.attendees = this.activity
+                        .attendees.filter(x => x.username !== this.rootStore.userStore.user!.username);
                     this.activity.isGoing = false;
                     this.activityRegistry.set(this.activity.id, this.activity);
                     this.loading = false;

@@ -6,7 +6,7 @@ export interface IActivity {
     date: Date;
     city: string;
     venue: string;
-    userActivities: IAttenddee[];
+    attendees: IAttenddee[];
     isGoing: boolean;
     isHost: boolean;
 }
